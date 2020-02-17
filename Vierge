@@ -1,0 +1,12 @@
+
+exemple d’une fonction de transition :
+boolE1::transition(Automate & automate,Symbole*s) {
+	switch(*s){
+		caseNOMBRE:caseVARIABLE:caseEXPR:automate.decalage(s,newE2);
+		break;
+	caseOUVREPAR:
+		automate.decalage(s,newE7);
+		break;
+	}
+	return false;
+}
