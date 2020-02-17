@@ -14,3 +14,5 @@ class Expr : public Symbole
 		string expression;
 		
 };
+
+#endif

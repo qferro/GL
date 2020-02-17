@@ -17,3 +17,5 @@ public:
 
 protected:
 };
+
+#endif

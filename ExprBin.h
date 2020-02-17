@@ -11,3 +11,4 @@ class ExprBin : public Expr
 		virtual void Affiche() { cout << anExpression }
 };
 		
+#endif

@@ -1,3 +1,6 @@
+#if ! defined ( SYMBOLESIMPLE_H )
+#define SYMBOLESIMPLE_H
+
 #pragma once
 
 #include "Symbole.h"
@@ -15,3 +18,5 @@ class SymboleSimple : public Symbole
 
    protected:
 };
+
+#endif

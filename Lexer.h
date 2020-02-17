@@ -21,3 +21,4 @@ class Lexer {
       int tete;
       Symbole * tampon;
 };
+#endif

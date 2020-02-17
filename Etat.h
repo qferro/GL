@@ -14,7 +14,7 @@ public:
 	
 	void print()const;
 	
-	virtual bool transition(Automate & automate,Symbole*s) = 0;
+	virtual bool transition(Automate & automate, Symbole*s) = 0;
 	
 	string getName();
 
@@ -22,3 +22,5 @@ protected:
 	string name;
 
 };
+
+#endif

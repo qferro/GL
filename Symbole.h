@@ -1,3 +1,6 @@
+#if ! defined ( SYMBOLE_H )
+#define SYMBOLE_H
+
 #pragma once
 
 #include <string>
@@ -29,3 +32,4 @@ class Entier : public Symbole {
       int valeur;
 };
 
+#endif

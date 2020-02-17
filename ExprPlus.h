@@ -11,3 +11,5 @@ public :
 	~ExprPlus()
 	void affiche() const;
 };
+
+#endif
