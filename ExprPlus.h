@@ -1,14 +1,16 @@
 #if ! defined ( EXPRPLUS_H )
 #define EXPRPLUS_H
 
-#include "ExprBin.h"
+#include "Expr.h"
 
-class ExprPlus : public ExprBin
+class ExprPlus : public Expr
 {
 
 public :
 	ExprPlus(Expr * s1, Expr * s2);
-	~ExprPlus()
+	
+	virtual ~ExprPlus() {}
+	
 	void affiche() const;
 };
 

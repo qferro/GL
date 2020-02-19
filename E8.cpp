@@ -12,6 +12,8 @@ using namespace std;
 #include "E7.h"
 #include "E8.h"
 #include "E9.h"
+#include "Expr.h"
+#include "ExprMult.h"
 
 E8::E8() {
 	name ="E8";
@@ -22,44 +24,43 @@ void E8::print() const {
 }
 
 bool E8::transition(Automate &automate, Symbole *s) {
+	cout << "E8" << endl;
 	switch(*s){
-		case INT:
-		case PLUS:
-			/*
+		case INT: {}
+		case PLUS: {
+			Expr* s1 = (Expr*) automate.popSymbol();
+			automate.popAndDestroySymbol();
+			Expr* s2 = (Expr*) automate.popSymbol();
+			automate.reduction(3, new ExprMult(s2,s1));
+			break;
+		}
+		case MULT: {
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
 			Expr*s2 = (Expr*) automate.popSymbol();
 			automate.reduction(3, new ExprMult(s2,s1));
-			*/
 			break;
-		case MULT:
-			/*
+		}
+		case OPENPAR: {}
+		case CLOSEPAR: {
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
+			Expr* s2 = (Expr*) automate.popSymbol();
 			automate.reduction(3, new ExprMult(s2,s1));
-			*/
 			break;
-		case OPENPAR:
-		case CLOSEPAR:
-			/*
+		}
+		case FIN: {
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
+			Expr* s2 = (Expr*) automate.popSymbol();
 			automate.reduction(3, new ExprMult(s2,s1));
-			*/
 			break;
-		case FIN:
-			/*
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
-			automate.reduction(3, new ExprMult(s2,s1));
-			*/
+		}
+		case EXPR: {}
+		case ERREUR: {
+			return true;
 			break;
-		case EXPR:
-		case ERREUR:
-			break;
+		}
 	}
 	return false;
 }

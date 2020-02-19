@@ -3,8 +3,10 @@
 
 using namespace std;
 
-double Expr::eval(constmap<String,double>& valeurs){
-
+void Expr::setValue(int val) {
+	valeur = val;
 }
 
-virtual Expr::~Expr();
+int Expr::getValue() {
+	return valeur;
+}

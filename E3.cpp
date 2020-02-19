@@ -12,6 +12,7 @@ using namespace std;
 #include "E7.h"
 #include "E8.h"
 #include "E9.h"
+#include "Expr.h"
 
 E3::E3() {
 	name ="E3";
@@ -22,28 +23,36 @@ void E3::print() const {
 }
 
 bool E3::transition(Automate &automate, Symbole *s) {
+	cout << "E3" << endl;
 	switch(*s){
 		case INT:
-		case PLUS:
-			/*Expr* s1 = (Expr*) automate.popSymbol();
-			automate.reduction(1, s1); */
+		case PLUS: {
+			Expr* s1 = (Expr*) automate.popSymbol();
+			automate.reduction(1, s1);
 			break;
-		case MULT:
-			//Expr* s1 = (Expr*) automate.popSymbol();
-			//automate.reduction(1, s1);
+		}
+		case MULT: {
+			Expr* s1 = (Expr*) automate.popSymbol();
+			automate.reduction(1, s1);
 			break;
-		case OPENPAR:
-		case CLOSEPAR:
-			//Expr* s1 = (Expr*) automate.popSymbol();
-			//automate.reduction(1, s1);
+		}
+		case OPENPAR: {}
+		case CLOSEPAR: {
+			Expr* s1 = (Expr*) automate.popSymbol();
+			automate.reduction(1, s1);
 			break;
-		case FIN:
-			//Expr* s1 = (Expr*) automate.popSymbol();
-			//automate.reduction(1, s1);
+		}
+		case FIN: {
+			Expr* s1 = new Expr();
+			s1 = (Expr*) automate.popSymbol();
+			automate.reduction(1, s1);
+			s1->Affiche();
 			break;
-		case EXPR:
-		case ERREUR:
+		}
+		case EXPR: {}
+		case ERREUR: {
 			break;
+		}
 	}
 	return false;
 }

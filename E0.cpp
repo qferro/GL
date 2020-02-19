@@ -23,6 +23,7 @@ void E0::print() const {
 }
 
 bool E0::transition(Automate &automate, Symbole *s) {
+	cout << "E0" << endl;
 	switch(*s) {
 		case INT:
 			automate.decalage(s, new E3);
@@ -38,6 +39,7 @@ bool E0::transition(Automate &automate, Symbole *s) {
 			automate.decalage(s, new E1);
 			break;
 		case ERREUR:
+			cout<<"erreur"<<endl;
 			break;
 	}
 	return false;

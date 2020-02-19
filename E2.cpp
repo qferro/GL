@@ -22,6 +22,7 @@ void E2::print() const {
 }
 
 bool E2::transition(Automate &automate, Symbole *s) {
+	cout << "E2" << endl;
 	switch(*s){
 		case INT:
 			automate.decalage(s, new E3);

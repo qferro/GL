@@ -22,8 +22,12 @@ public :
 	void decalage(Symbole *s, Etat *e);
 	
 	void reduction(int n, Symbole *s);
+	
+	void exec();
+	
+	void pushSymbol(Symbole* s);
 
-	void popSymbol();
+	Symbole* popSymbol();
 
 	void popAndDestroySymbol();
 	

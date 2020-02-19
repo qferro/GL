@@ -14,6 +14,10 @@ Etat::Etat(string aName) {
 
 Etat::Etat(const Etat &unEtat) {}
 
+void Etat::print() const {
+	cout << "Etat: " + name << endl;
+}
+
 string Etat::getName() {
 	return name;
 }

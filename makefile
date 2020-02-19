@@ -2,7 +2,7 @@ ECHO = echo
 RM = rm
 COMP = g++
 EDL = g++
-INT = Main.h Lexer.h Symbole.h Automate.h Etat.h E0.h E1.h E2.h E3.h E4.h E5.h E6.h E7.h E8.h E9.h
+INT = Main.h Lexer.h Symbole.h Automate.h Etat.h E0.h E1.h E2.h E3.h E4.h E5.h E6.h E7.h E8.h E9.h Expr.h ExprPlus.h ExprMult.h
 REAL = $(INT:.h=.cpp)
 OBJ = $(REAL:.cpp=.o)
 EXE = prog
@@ -51,3 +51,15 @@ E7.o : E7.cpp E7.h Etat.h
 E8.o : E8.cpp E8.h Etat.h
 
 E9.o : E9.cpp E9.h Etat.h
+
+Expr.o : Expr.cpp Expr.h Symbole.h
+
+ExprPlus.o : ExprPlus.cpp ExprPlus.h Expr.h
+
+ExprMult.o : ExprMult.cpp ExprMult.h Expr.h
+
+clean:
+	rm -rf *.o
+	
+mrproper: clean
+	rm -rf prog

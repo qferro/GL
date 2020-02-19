@@ -12,6 +12,7 @@ using namespace std;
 #include "E7.h"
 #include "E8.h"
 #include "E9.h"
+#include "Expr.h"
 
 E9::E9() {
 	name ="E9";
@@ -22,43 +23,42 @@ void E9::print() const {
 }
 
 bool E9::transition(Automate &automate, Symbole *s) {
+	cout << "E9" << endl;
 	switch(*s){
-		case INT:
-		case PLUS:
-			/*
+		case INT: {}
+		case PLUS: {
 			automate.popAndDestroySymbol();
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
 			automate.reduction(3, s1);
-			*/
 			break;
-		case MULT:
-			/*
+		}
+		case MULT: {
 			automate.popAndDestroySymbol();
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
 			automate.reduction(3, s1);
-			*/
 			break;
-		case OPENPAR:
-		case CLOSEPAR:
-			/*automate.popAndDestroySymbol();
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
-			automate.reduction(3, s1);
-			*/
-			break;
-		case FIN:
-			/*
+		}
+		case OPENPAR: {}
+		case CLOSEPAR: {
 			automate.popAndDestroySymbol();
 			Expr* s1 = (Expr*) automate.popSymbol();
 			automate.popAndDestroySymbol();
 			automate.reduction(3, s1);
-			*/
 			break;
-		case EXPR:
-		case ERREUR:
+		}
+		case FIN: {
+			automate.popAndDestroySymbol();
+			Expr* s1 = (Expr*) automate.popSymbol();
+			automate.popAndDestroySymbol();
+			automate.reduction(3, s1);
 			break;
+		}
+		case EXPR: {}
+		case ERREUR: {
+			break;
+		}
 	}
 	return false;
 }

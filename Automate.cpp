@@ -1,4 +1,5 @@
 #include "Automate.h"
+#include "Expr.h"
 #include <iostream>
 
 #include "E0.h"
@@ -26,8 +27,34 @@ void Automate::reduction(int n, Symbole *s) {
 	statestack.back()->transition(*this,s);
 }
 
-void Automate::popSymbol() {
+void Automate::exec() {
+	
+	while(statestack.size() != 0) {
+		Symbole* s;
+		s = lexer->Consulter();
+		s->Affiche();
+		cout << endl;
+		this->getCurrentState()->print();
+		
+		if(this->getCurrentState()->transition(*this, s)) { break; }
+		
+		cout<<endl;
+		//lexer->Avancer();
+		
+	}
+	cout << endl;
+	cout << symbolstack.size() << endl;
+	cout << endl;
+}
+
+void Automate::pushSymbol(Symbole* s) {
+	symbolstack.push_back(s);
+}
+
+Symbole* Automate::popSymbol() {
+	Symbole* s = symbolstack.back();
 	symbolstack.pop_back();
+	return s;
 }
 
 void Automate::popAndDestroySymbol() {

@@ -22,6 +22,7 @@ void E6::print() const {
 }
 
 bool E6::transition(Automate &automate, Symbole *s) {
+	cout << "E6" << endl;
 	switch(*s){
 		case INT:
 		case PLUS:

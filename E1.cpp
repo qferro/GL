@@ -22,6 +22,7 @@ void E1::print() const {
 }
 
 bool E1::transition(Automate &automate, Symbole *s) {
+	cout << "E1" << endl;
 	switch(*s){
 		case INT:
 		case PLUS:
@@ -34,6 +35,7 @@ bool E1::transition(Automate &automate, Symbole *s) {
 		case CLOSEPAR:
 		case FIN:
 			automate.accepter();
+			return true;
 			break;
 		case EXPR:
 		case ERREUR:
