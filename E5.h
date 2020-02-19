@@ -1,19 +1,19 @@
 #if ! defined ( E5_H )
 #define E5_H
 
-#include "etat.h"
+#include "Etat.h"
 
 class E5 : public Etat 
 {
 
 public:
-	E5(string name);
+	E5();
 
 	virtual ~E5();
 	
 	void print() const;
 	
-	bool transition(Automate & automate, Symbole*s) = 0;
+	bool transition(Automate & automate, Symbole*s);
 
 protected:
 };

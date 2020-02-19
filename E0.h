@@ -2,8 +2,9 @@
 #define E0_H
 
 #include "Etat.h"
+#include "Symbole.h"
 
-class E0 : public Etat 
+class E0 : public Etat
 {
 
 public:
@@ -13,7 +14,7 @@ public:
 	
 	void print() const;
 	
-	bool transition(Automate & automate, Symbole*s) = 0;
+	bool transition(Automate & automate, Symbole*s);
 
 protected:
 };

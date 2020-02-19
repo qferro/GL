@@ -1,17 +1,23 @@
 #if ! defined ( AUTOMATE_H )
 #define AUTOMATE_H
 
+using namespace std;
+
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Etat.h"
+
 #include "Symbole.h"
 #include "Lexer.h"
+#include "Etat.h"
+
+class Etat;
 
 class Automate {
 
 public :
-	Automate();
+
+	Automate(Lexer* lexer);
 	
 	void decalage(Symbole *s, Etat *e);
 	
@@ -30,6 +36,7 @@ public :
 private :
 	vector<Symbole*> symbolstack;
 	vector<Etat*> statestack;
+	Lexer* lexer;
 
 };
 

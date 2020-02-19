@@ -4,14 +4,18 @@ using namespace std;
 
 #include "Etat.h"
 
-Etat::Etat(string name) {};
+Etat::Etat() {
+	name = "undefined";
+}
 
-Etat::Etat(const Etat &unEtat) {};
+Etat::Etat(string aName) {
+	name = aName;
+}
+
+Etat::Etat(const Etat &unEtat) {}
 
 string Etat::getName() {
 	return name;
 }
 
-Etat::~Etat() {};
-
-};
+Etat::~Etat() {}

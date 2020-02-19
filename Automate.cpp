@@ -1,9 +1,12 @@
 #include "Automate.h"
 #include <iostream>
 
+#include "E0.h"
+
 using namespace std;
 
-Automate::Automate() {
+Automate::Automate(Lexer* lexer2) {
+	lexer = lexer2;
 	statestack.push_back(new E0());
 };
 
@@ -27,7 +30,7 @@ void Automate::popSymbol() {
 	symbolstack.pop_back();
 }
 
-void Automate::popSymbolAndDestroy() {
+void Automate::popAndDestroySymbol() {
 	delete(statestack.back());
 	symbolstack.pop_back();
 }
@@ -40,4 +43,4 @@ Etat* Automate::getCurrentState() {
 	return statestack.back();
 }
 
-
+Automate::~Automate() {}

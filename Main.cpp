@@ -8,7 +8,7 @@ int main(void) {
 
    Lexer l(chaine);
 	
-	Automate* a = new Automate();
+	Automate* a = new Automate(&l);
 	
    Symbole * s;
    while(*(s=l.Consulter())!=FIN) {

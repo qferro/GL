@@ -1,19 +1,25 @@
-#include "E6.h"
 #include <iostream>
 
 using namespace std;
 
-E6::E6(string aName) {
-	if(aName != nullptr) {
-		name = eName;
-	} else {
-		cout << "erreur dans la construction" << endl;
-	}
-};
+#include "E0.h"
+#include "E1.h"
+#include "E2.h"
+#include "E3.h"
+#include "E4.h"
+#include "E5.h"
+#include "E6.h"
+#include "E7.h"
+#include "E8.h"
+#include "E9.h"
+
+E6::E6() {
+	name ="E6";
+}
 	
 void E6::print() const {
 	cout << "Etat: " + name << endl;
-};
+}
 
 bool E6::transition(Automate &automate, Symbole *s) {
 	switch(*s){
@@ -31,9 +37,9 @@ bool E6::transition(Automate &automate, Symbole *s) {
 		case FIN:
 		case EXPR:
 		case ERREUR:
+			break;
 	}
 	return false;
 }
-};
 
-virtual E6::~E6();
+E6::~E6() {}
