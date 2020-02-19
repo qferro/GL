@@ -7,11 +7,13 @@
 class Expr : public Symbole 
 {
 	public : 
-		Expr() : Symbole(EXPR, false) {}
+		Expr(int val) : Symbole(EXPR, false), valeur(val) {}
 		
 		void setValue(int val);
 
 		int getValue();
+		
+		void Affiche();
 		
 		virtual ~Expr() {}
 

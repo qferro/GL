@@ -34,6 +34,10 @@ public :
 	void accepter();
 	
 	Etat* getCurrentState();
+	
+	void print_deque_symbole();
+		
+	void print_deque_state();
 
 	virtual ~Automate();
 

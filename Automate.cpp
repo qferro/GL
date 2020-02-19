@@ -29,22 +29,25 @@ void Automate::reduction(int n, Symbole *s) {
 
 void Automate::exec() {
 	
+	Symbole* s;
+	int i = 0;
 	while(statestack.size() != 0) {
-		Symbole* s;
 		s = lexer->Consulter();
 		s->Affiche();
 		cout << endl;
-		this->getCurrentState()->print();
-		
+		print_deque_symbole();
+		cout << endl;
+		print_deque_state();
+		cout << endl;
 		if(this->getCurrentState()->transition(*this, s)) { break; }
-		
 		cout<<endl;
-		//lexer->Avancer();
+		
 		
 	}
 	cout << endl;
 	cout << symbolstack.size() << endl;
 	cout << endl;
+	cout << "Result :" << ((Entier*)symbolstack.back())->getValue() << endl;
 }
 
 void Automate::pushSymbol(Symbole* s) {
@@ -68,6 +71,20 @@ void Automate::accepter() {
 
 Etat* Automate::getCurrentState() {
 	return statestack.back();
+}
+
+void Automate::print_deque_symbole() {
+	for(vector<Symbole*>::iterator it = symbolstack.begin() ; it!=symbolstack.end(); ++it) {
+		cout << ' ';
+		(*it)->Affiche();
+	}
+}
+
+void Automate::print_deque_state() {
+	for(vector<Etat*>::iterator it = statestack.begin() ; it!=statestack.end(); ++it) {
+		cout << ' ';
+		(*it)->print();
+	}
 }
 
 Automate::~Automate() {}

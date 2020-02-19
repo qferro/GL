@@ -27,31 +27,31 @@ bool E9::transition(Automate &automate, Symbole *s) {
 	switch(*s){
 		case INT: {}
 		case PLUS: {
-			automate.popAndDestroySymbol();
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
+			automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.popSymbol();
 			automate.reduction(3, s1);
 			break;
 		}
 		case MULT: {
-			automate.popAndDestroySymbol();
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
+			automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.popSymbol();
 			automate.reduction(3, s1);
 			break;
 		}
 		case OPENPAR: {}
 		case CLOSEPAR: {
-			automate.popAndDestroySymbol();
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
+			automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.popSymbol();
 			automate.reduction(3, s1);
 			break;
 		}
 		case FIN: {
-			automate.popAndDestroySymbol();
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.popAndDestroySymbol();
+			automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.popSymbol();
 			automate.reduction(3, s1);
 			break;
 		}

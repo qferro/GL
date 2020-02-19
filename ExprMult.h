@@ -7,7 +7,7 @@ class ExprMult : public Expr
 {
 	public :
 		
-		ExprMult(Expr* e1, Expr* e2);
+		ExprMult(Expr* e1, Expr* e2) : Expr(e1->getValue()*e2->getValue()) {}
 		
 		virtual ~ExprMult() {}
 		

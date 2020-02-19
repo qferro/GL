@@ -10,3 +10,8 @@ void Expr::setValue(int val) {
 int Expr::getValue() {
 	return valeur;
 }
+
+void Expr::Affiche() {
+   Symbole::Affiche();
+   cout<<"("<<valeur<<")";
+}

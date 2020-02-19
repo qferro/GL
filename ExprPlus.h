@@ -7,11 +7,12 @@ class ExprPlus : public Expr
 {
 
 public :
-	ExprPlus(Expr * s1, Expr * s2);
+	ExprPlus(Expr * s1, Expr * s2) : Expr(s1->getValue()+s2->getValue()) {}
 	
 	virtual ~ExprPlus() {}
 	
-	void affiche() const;
+	void affiche();
+	
 };
 
 #endif

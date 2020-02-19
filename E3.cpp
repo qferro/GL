@@ -24,29 +24,27 @@ void E3::print() const {
 
 bool E3::transition(Automate &automate, Symbole *s) {
 	cout << "E3" << endl;
-	switch(*s){
+	switch(*s) {
 		case INT:
 		case PLUS: {
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.reduction(1, s1);
+			Entier* s1 = ((Entier*) automate.popSymbol());
+			automate.reduction(1, new Expr(s1->getValue()));
 			break;
 		}
 		case MULT: {
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.reduction(1, s1);
+			Entier* s1 = ((Entier*) automate.popSymbol());
+			automate.reduction(1,  new Expr(s1->getValue()));
 			break;
 		}
 		case OPENPAR: {}
 		case CLOSEPAR: {
-			Expr* s1 = (Expr*) automate.popSymbol();
-			automate.reduction(1, s1);
+			Entier* s1 = ((Entier*) automate.popSymbol());
+			automate.reduction(1,  new Expr(s1->getValue()));
 			break;
 		}
 		case FIN: {
-			Expr* s1 = new Expr();
-			s1 = (Expr*) automate.popSymbol();
-			automate.reduction(1, s1);
-			s1->Affiche();
+			Entier* s1 = ((Entier*) automate.popSymbol());
+			automate.reduction(1,  new Expr(s1->getValue()));
 			break;
 		}
 		case EXPR: {}

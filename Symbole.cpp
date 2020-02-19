@@ -9,3 +9,7 @@ void Entier::Affiche() {
    Symbole::Affiche();
    cout<<"("<<valeur<<")";
 }
+
+int Entier::getValue() {
+	return valeur;
+}

@@ -27,10 +27,10 @@ bool E7::transition(Automate &automate, Symbole *s) {
 	switch(*s) {
 		case INT: {}
 		case PLUS: {
-			Expr* s1 = (Expr*) automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
-			automate.reduction(3, new ExprPlus(s2,s1));
+			Expr* s2 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.reduction(3, new ExprPlus(s1,s2));
 			break;
 		}
 		case MULT: {
@@ -39,17 +39,17 @@ bool E7::transition(Automate &automate, Symbole *s) {
 		}
 		case OPENPAR: {}
 		case CLOSEPAR: {
-			Expr* s1 = (Expr*) automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
-			automate.reduction(3, new ExprPlus(s2,s1));
+			Expr* s2 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.reduction(3, new ExprPlus(s1,s2));
 			break;
 		}
 		case FIN: {
-			Expr* s1 = (Expr*) automate.popSymbol();
+			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
-			Expr*s2 = (Expr*) automate.popSymbol();
-			automate.reduction(3, new ExprPlus(s2,s1));
+			Expr* s2 = new Expr(((Entier*) automate.popSymbol())->getValue());
+			automate.reduction(3, new ExprPlus(s1,s2));
 			break;
 		}
 		case EXPR: {}
