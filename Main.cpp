@@ -3,8 +3,8 @@
 #include "Automate.h"
 
 
-int main(void) {
-	string chaine("(1+30)*2+5*((3+2)*5)");
+int main(int argc, char *argv[]) {
+	string chaine(argv[1]);
 
   	Lexer l(chaine);
 	

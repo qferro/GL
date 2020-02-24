@@ -30,7 +30,6 @@ void Automate::reduction(int n, Symbole *s) {
 void Automate::exec() {
 	
 	Symbole* s;
-	int i = 0;
 	while(statestack.size() != 0) {
 		s = lexer->Consulter();
 		s->Affiche();
@@ -45,7 +44,7 @@ void Automate::exec() {
 	cout << endl;
 	cout << symbolstack.size() << endl;
 	cout << endl;
-	cout << "Result :" << ((Entier*)symbolstack.back())->getValue() << endl;
+	cout << "Result : " << ((Entier*)symbolstack.back())->getValue() << endl;
 }
 
 void Automate::pushSymbol(Symbole* s) {
