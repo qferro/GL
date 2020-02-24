@@ -41,8 +41,6 @@ void Automate::exec() {
 		cout << endl;
 		if(this->getCurrentState()->transition(*this, s)) { break; }
 		cout<<endl;
-		
-		
 	}
 	cout << endl;
 	cout << symbolstack.size() << endl;
