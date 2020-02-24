@@ -18,13 +18,13 @@ E6::E6() {
 }
 	
 void E6::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E6::transition(Automate &automate, Symbole *s) {
-	cout << "E6" << endl;
 	switch(*s){
 		case INT:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case PLUS:
 			automate.decalage(s, new E4);
 			break;
@@ -32,12 +32,22 @@ bool E6::transition(Automate &automate, Symbole *s) {
 			automate.decalage(s, new E5);
 			break;
 		case OPENPAR:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case CLOSEPAR:
 			automate.decalage(s, new E9);
 			break;
 		case FIN:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case EXPR:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case ERREUR:
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 	}
 	return false;

@@ -19,13 +19,14 @@ E3::E3() {
 }
 	
 void E3::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E3::transition(Automate &automate, Symbole *s) {
-	cout << "E3" << endl;
 	switch(*s) {
-		case INT:
+		case INT: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case PLUS: {
 			Entier* s1 = ((Entier*) automate.popSymbol());
 			automate.reduction(1, new Expr(s1->getValue()));
@@ -36,7 +37,10 @@ bool E3::transition(Automate &automate, Symbole *s) {
 			automate.reduction(1,  new Expr(s1->getValue()));
 			break;
 		}
-		case OPENPAR: {}
+		case OPENPAR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case CLOSEPAR: {
 			Entier* s1 = ((Entier*) automate.popSymbol());
 			automate.reduction(1,  new Expr(s1->getValue()));
@@ -47,8 +51,15 @@ bool E3::transition(Automate &automate, Symbole *s) {
 			automate.reduction(1,  new Expr(s1->getValue()));
 			break;
 		}
-		case EXPR: {}
+		case EXPR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case ERREUR: {
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 		}
 	}

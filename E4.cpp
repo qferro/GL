@@ -18,26 +18,36 @@ E4::E4() {
 }
 	
 void E4::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E4::transition(Automate &automate, Symbole *s) {
-	cout << "E4" << endl;
 	switch(*s){
 		case INT:
 			automate.decalage(s, new E3);
 			break;
 		case PLUS:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case MULT:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case OPENPAR:
 			automate.decalage(s, new E2);
 			break;
 		case CLOSEPAR:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case FIN:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case EXPR:
 			automate.decalage(s, new E7);
 			break;
 		case ERREUR:
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 	}
 	return false;

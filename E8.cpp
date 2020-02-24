@@ -20,13 +20,14 @@ E8::E8() {
 }
 	
 void E8::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E8::transition(Automate &automate, Symbole *s) {
-	cout << "E8" << endl;
 	switch(*s){
-		case INT: {}
+		case INT: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case PLUS: {
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
@@ -41,7 +42,10 @@ bool E8::transition(Automate &automate, Symbole *s) {
 			automate.reduction(3, new ExprMult(s2,s1));
 			break;
 		}
-		case OPENPAR: {}
+		case OPENPAR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case CLOSEPAR: {
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
@@ -56,9 +60,15 @@ bool E8::transition(Automate &automate, Symbole *s) {
 			automate.reduction(3, new ExprMult(s2,s1));
 			break;
 		}
-		case EXPR: {}
+		case EXPR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case ERREUR: {
-			return true;
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 		}
 	}

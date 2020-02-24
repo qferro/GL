@@ -1,8 +1,6 @@
 #if ! defined ( AUTOMATE_H )
 #define AUTOMATE_H
 
-using namespace std;
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -35,6 +33,8 @@ public :
 	
 	Etat* getCurrentState();
 	
+	void dequeuAll();
+	
 	void print_deque_symbole();
 		
 	void print_deque_state();
@@ -45,6 +45,7 @@ private :
 	vector<Symbole*> symbolstack;
 	vector<Etat*> statestack;
 	Lexer* lexer;
+	bool achieved;
 
 };
 

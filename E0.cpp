@@ -19,27 +19,36 @@ E0::E0() {
 }
 	
 void E0::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E0::transition(Automate &automate, Symbole *s) {
-	cout << "E0" << endl;
 	switch(*s) {
 		case INT:
 			automate.decalage(s, new E3);
 			break;
 		case PLUS:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case MULT:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case OPENPAR:
 			automate.decalage(s, new E2);
 			break;
 		case CLOSEPAR:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case FIN:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case EXPR:
 			automate.decalage(s, new E1);
 			break;
 		case ERREUR:
-			cout<<"erreur"<<endl;
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 	}
 	return false;

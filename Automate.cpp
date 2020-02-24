@@ -7,6 +7,7 @@
 using namespace std;
 
 Automate::Automate(Lexer* lexer2) {
+	achieved = false;
 	lexer = lexer2;
 	statestack.push_back(new E0());
 };
@@ -30,21 +31,17 @@ void Automate::reduction(int n, Symbole *s) {
 void Automate::exec() {
 	
 	Symbole* s;
-	while(statestack.size() != 0) {
+	while(!statestack.empty()) {
 		s = lexer->Consulter();
-		s->Affiche();
-		cout << endl;
-		print_deque_symbole();
-		cout << endl;
-		print_deque_state();
-		cout << endl;
-		if(this->getCurrentState()->transition(*this, s)) { break; }
-		cout<<endl;
+		//s->Affiche();
+		//cout << endl;
+		//print_deque_symbole();
+		//cout << endl;
+		//print_deque_state();
+		//cout << endl;
+		if(this->getCurrentState()->transition(*this, s)) { achieved = true; break; }
 	}
-	cout << endl;
-	cout << symbolstack.size() << endl;
-	cout << endl;
-	cout << "Result : " << ((Entier*)symbolstack.back())->getValue() << endl;
+	if(achieved) { cout << endl; cout << "Result : " << ((Entier*)symbolstack.back())->getValue() << endl; cout << endl; }
 }
 
 void Automate::pushSymbol(Symbole* s) {
@@ -68,6 +65,12 @@ void Automate::accepter() {
 
 Etat* Automate::getCurrentState() {
 	return statestack.back();
+}
+
+void Automate::dequeuAll() {
+	while(!statestack.empty()) {
+		statestack.pop_back();
+	}
 }
 
 void Automate::print_deque_symbole() {

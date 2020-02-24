@@ -19,13 +19,14 @@ E7::E7() {
 }
 	
 void E7::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E7::transition(Automate &automate, Symbole *s) {
-	cout << "E7" << endl;
 	switch(*s) {
-		case INT: {}
+		case INT: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case PLUS: {
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
@@ -37,7 +38,10 @@ bool E7::transition(Automate &automate, Symbole *s) {
 			automate.decalage(s, new E5);
 			break;
 		}
-		case OPENPAR: {}
+		case OPENPAR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case CLOSEPAR: {
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
 			automate.popAndDestroySymbol();
@@ -52,8 +56,15 @@ bool E7::transition(Automate &automate, Symbole *s) {
 			automate.reduction(3, new ExprPlus(s1,s2));
 			break;
 		}
-		case EXPR: {}
+		case EXPR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case ERREUR: {
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 		}
 	}

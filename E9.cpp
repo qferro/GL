@@ -19,13 +19,15 @@ E9::E9() {
 }
 	
 void E9::print() const {
-	cout << "Etat: " + name << endl;
+	//cout << "Etat: " + name << endl;
 }
 
 bool E9::transition(Automate &automate, Symbole *s) {
-	cout << "E9" << endl;
 	switch(*s){
-		case INT: {}
+		case INT: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case PLUS: {
 			automate.popSymbol();
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
@@ -40,7 +42,10 @@ bool E9::transition(Automate &automate, Symbole *s) {
 			automate.reduction(3, s1);
 			break;
 		}
-		case OPENPAR: {}
+		case OPENPAR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case CLOSEPAR: {
 			automate.popSymbol();
 			Expr* s1 = new Expr(((Entier*) automate.popSymbol())->getValue());
@@ -55,8 +60,15 @@ bool E9::transition(Automate &automate, Symbole *s) {
 			automate.reduction(3, s1);
 			break;
 		}
-		case EXPR: {}
+		case EXPR: {
+			transition(automate, new Symbole(ERREUR, false));
+			break;
+		}
 		case ERREUR: {
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 		}
 	}

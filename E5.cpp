@@ -18,26 +18,36 @@ E5::E5() {
 }
 	
 void E5::print() const {
-	cout << "Etat: " + name << endl;
 }
 
 bool E5::transition(Automate &automate, Symbole *s) {
-	cout << "E5" << endl;
 	switch(*s){
 		case INT:
 			automate.decalage(s, new E3);
 			break;
 		case PLUS:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case MULT:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case OPENPAR:
 			automate.decalage(s, new E2);
 			break;
 		case CLOSEPAR:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case FIN:
+			transition(automate, new Symbole(ERREUR, false));
+			break;
 		case EXPR:
 			automate.decalage(s, new E8);
 			break;
 		case ERREUR:
+			cout << endl;
+			cout << "Erreur. Veuillez vérifier votre entrée." << endl;
+			cout << endl;
+			automate.dequeuAll();
 			break;
 	}
 	return false;
